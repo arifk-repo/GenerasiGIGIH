@@ -59,10 +59,27 @@ post '/category/create' do
   redirect '/category/'
 end
 
+get '/category/edit/:id' do
+  controller = CategoryController.new
+  controller.edit_category(params['id'])
+end
+
+post '/category/update' do
+  controller = CategoryController.new
+  controller.update_category(params['id'],params['name'])
+  redirect '/category/'
+end
+
 get '/category/delete/:id/:id_category' do
   controller = ItemController.new
   controller.delete_categories_from_item(params['id'],params['id_category'])
   redirect "/items/list_category/#{params['id']}"
+end
+
+get '/category/delete_category/:id' do
+  controller = CategoryController.new
+  controller.delete_category(params['id'])
+  redirect '/category/'
 end
 #
 # get '/items/edit/:id' do

@@ -41,6 +41,7 @@ class Category
   def self.delete(id)
     client = get_client
     client.query("DELETE FROM categories WHERE id=#{id}")
+    Item_categories.clear(id)
   end
 
   def to_s

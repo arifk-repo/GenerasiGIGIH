@@ -42,6 +42,13 @@ class Item_categories
     client.query("DELETE FROM item_categories WHERE item_id=#{id} AND category_id=#{cat_id}")
   end
 
+  def self.clear(id)
+    client = get_client
+    client.query("SET FOREIGN_KEY_CHECKS=0")
+    client.query("DELETE FROM item_categories WHERE category_id=#{cat_id}")
+    client.query("SET FOREIGN_KEY_CHECKS=1")
+  end
+
   def self.get_all_menus
     client = get_client
     client.query('SELECT * FROM item_categories')

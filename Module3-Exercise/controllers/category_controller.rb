@@ -35,4 +35,18 @@ class CategoryController
     category
   end
 
+  def edit_category(id)
+    category = Category.find_by_id(id)
+    renderer = ERB.new(File.read("./views/edit_category.erb"))
+    renderer.result(binding)
+  end
+
+  def update_category(id,name)
+    category = Category.update(id,name)
+  end
+
+  def delete_category(id)
+    category = Category.delete(id)
+  end
+
 end
